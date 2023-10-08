@@ -13,10 +13,10 @@ def index():
 
         is_valid = api.validate_credit_card(card_number, expiry, cvv)
 
-        if is_valid:
+        if not "Error" in is_valid:
             return render_template('success.html', message='Credit card is valid')
         else:
-            return render_template('failure.html', message='Invalid credit card data')
+            return render_template('failure.html', message=is_valid[7:])
 
     return render_template('form.html')
 
