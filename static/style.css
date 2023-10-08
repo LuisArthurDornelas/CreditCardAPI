@@ -12,6 +12,10 @@ body {
     height: 100vh;
 }
 
+.message {
+    margin-bottom: 20px; /* Adiciona um espaçamento de 20px abaixo do parágrafo */
+}
+
 form {
     width: 300px;
     margin: 0 auto;

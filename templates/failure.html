@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Failure</h1>
-    <p>{{ message }}</p>
+    <p class="message">{{ message }}</p>
+    <form action="{{ url_for('index') }}" method="GET">
+        <input type="submit" value="Go Back"></input>
+    </form>
 </body>
 </html>

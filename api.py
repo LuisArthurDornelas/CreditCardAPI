@@ -32,8 +32,8 @@ def validate_credit_card(card_number, expiry, cvv):
 
     # Check expiration date format and validity
     try:
-        expiry_month = int(expiry[:2])  # Converte os primeiros 2 caracteres de expiry em um inteiro
-        expiry_year = int(expiry[2:])   # Converte os últimos 2 caracteres de expiry em um inteiro
+        expiry_month = int(expiry[:2])  # Gets expiry month
+        expiry_year = int(expiry[2:])   # Gets expiry year
         current_year = datetime.now().year
         print(current_year)
 
