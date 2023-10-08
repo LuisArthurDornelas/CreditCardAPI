@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import api
+from datetime import datetime
+from api import validate_credit_card
 
 app = Flask(__name__)
 
@@ -10,13 +12,16 @@ def index():
         card_number = request.form['card-number']
         expiry = request.form['expiry']
         cvv = request.form['cvv']
-        api.save_data(name, card_number, expiry, cvv)
-        return redirect(url_for('thanks'))
-    return render_template('form.html')
 
-@app.route('/thanks')
-def thanks():
-    return 'Succesfully sent data!'
+        is_valid = validate_credit_card(card_number, expiry, cvv)
+
+        if is_valid:
+            api.save_data(name, card_number, expiry, cvv)
+            return render_template('success.html', message='Credit card is valid')
+        else:
+            return render_template('failure.html', message='Invalid credit card data')
+
+    return render_template('form.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
