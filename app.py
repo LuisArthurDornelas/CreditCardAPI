@@ -3,12 +3,14 @@ import api
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/validate', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        nome = request.form['name']
-        idade = request.form['age']
-        api.save_data(nome, idade)
+        name = request.form['name']
+        card_number = request.form['card-number']
+        expiry = request.form['expiry']
+        cvv = request.form['cvv']
+        api.save_data(name, card_number, expiry, cvv)
         return redirect(url_for('thanks'))
     return render_template('form.html')
 
