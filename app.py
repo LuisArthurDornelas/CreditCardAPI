@@ -16,7 +16,7 @@ def index():
         is_valid = validate_credit_card(card_number, expiry, cvv)
 
         if is_valid:
-            api.save_data(name, card_number, expiry, cvv)
+            api.validate_credit_card(card_number, expiry, cvv)
             return render_template('success.html', message='Credit card is valid')
         else:
             return render_template('failure.html', message='Invalid credit card data')
