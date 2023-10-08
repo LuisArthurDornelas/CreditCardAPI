@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, jsonify
 import api
-from datetime import datetime
-from api import validate_credit_card
 
 app = Flask(__name__)
 
@@ -13,10 +11,9 @@ def index():
         expiry = request.form['expiry']
         cvv = request.form['cvv']
 
-        is_valid = validate_credit_card(card_number, expiry, cvv)
+        is_valid = api.validate_credit_card(card_number, expiry, cvv)
 
         if is_valid:
-            api.validate_credit_card(card_number, expiry, cvv)
             return render_template('success.html', message='Credit card is valid')
         else:
             return render_template('failure.html', message='Invalid credit card data')
