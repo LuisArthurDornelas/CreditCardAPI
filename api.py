@@ -10,7 +10,7 @@ def validate_credit_card(card_number, expiry, cvv):
 
     # Check card number length and format
     if len(card_number) < 16 or len(card_number) > 19 or not card_number.isdigit():
-        return ("Error: Invalid Card Number")
+        return {"error": "Invalid Card Number"}
 
     # Perform Luhn algorithm validation
     def luhn_check(card_number):
@@ -28,8 +28,7 @@ def validate_credit_card(card_number, expiry, cvv):
         return checksum == 0
 
     if not luhn_check(card_number):
-        print("Luhn Check Fail!")
-        return ("Error: Invalid Card Number")
+        return {"error": "Invalid Card Number"}
 
 
     # Check expiration date format and validity
@@ -39,20 +38,20 @@ def validate_credit_card(card_number, expiry, cvv):
         current_year = datetime.now().year
 
         if expiry_year < current_year % 100 or (expiry_month < 1 or expiry_month > 12):
-            return ("Error: Invalid Expiration Date")
+            return {"error": "Invalid Expiration Date"}
 
     except ValueError:
-        return ("Error: Error converting date values")
+        return {"error": "Error converting date values"}
 
     # Check CVV length
     is_american_express = card_number.startswith(('34', '37'))
     if is_american_express and len(cvv) != 4:
-        return ("Error: Invalid CVV length")
+        return {"error": "Invalid CVV length"}
 
     elif not is_american_express and len(cvv) != 3:
-        return ("Error: Invalid CVV length")
+        return {"error": "Invalid CVV length"}
 
-    return ("Success!")
+    return {"message": "Success!"}
 
 if __name__ == '__main__':
     pass
