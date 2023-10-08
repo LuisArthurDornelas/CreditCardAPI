@@ -35,10 +35,12 @@ def validate_credit_card(card_number, expiry, cvv):
         expiry_month = int(expiry[:2])  # Gets expiry month
         expiry_year = int(expiry[2:])   # Gets expiry year
         current_year = datetime.now().year
-        print(current_year)
+        print(expiry_month)
 
-        if expiry_year < current_year % 100 or expiry_month < 1 or expiry_month > 12:
+
+        if expiry_year < current_year % 100 or (expiry_month < 1 or expiry_month > 12):
             print("Date Fail!")
+            return False
     except ValueError:
         print("Erro ao converter valores de data em inteiros")
 
