@@ -5,6 +5,8 @@ import pdb
 def validate_credit_card(card_number, expiry, cvv):
     # Remove non-digit characters from card number
     card_number = ''.join(filter(str.isdigit, card_number))
+    expiry = ''.join(filter(str.isdigit, expiry))
+    cvv = ''.join(filter(str.isdigit, cvv))
 
     # Check card number length and format
     if len(card_number) < 16 or len(card_number) > 19 or not card_number.isdigit():
@@ -35,14 +37,13 @@ def validate_credit_card(card_number, expiry, cvv):
         expiry_month = int(expiry[:2])  # Gets expiry month
         expiry_year = int(expiry[2:])   # Gets expiry year
         current_year = datetime.now().year
-        print(expiry_month)
-
 
         if expiry_year < current_year % 100 or (expiry_month < 1 or expiry_month > 12):
             print("Date Fail!")
             return False
     except ValueError:
-        print("Erro ao converter valores de data em inteiros")
+        print("Error converting date values")
+        return False
 
     # Check CVV length
     is_american_express = card_number.startswith(('34', '37'))
