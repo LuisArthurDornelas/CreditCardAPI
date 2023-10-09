@@ -2,14 +2,21 @@
 
 ## Description
 This projects consists in a Credit Card Validation app, it checks:
-- Expiry Data
-Not allowing invalid months and past dates (ex: 45/25 or 02/20).
+- Expiry Date
+
+  - Not allowing invalid months and past dates (ex: 45/25 or 02/20).
+
 - Validity of credit card number (PAN)
-Uses Luhn's algorithm to do so, read more about it at [here](https://en.wikipedia.org/wiki/Luhn_algorithm).
+
+  - Uses Luhn's algorithm to do so, read more about it at [here](https://en.wikipedia.org/wiki/Luhn_algorithm).
+
 - CVV length 
-Where America Express Cards (which PAN starts with either "34" or "37") need to have 4 digits, and the other cards only 3.
+
+  - Where America Express Cards (which PAN starts with either "34" or "37") need to have 4 digits, and the other cards only 3.
+
 - Blank fields
-Additionally, it prevents the user from submitting the form if any of the fields are left empty.
+
+  - Additionally, it prevents the user from submitting the form if any of the fields are left empty.
 
 ## Prerequisites
 To run this project, you'll need:
